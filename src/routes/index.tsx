@@ -331,7 +331,7 @@ const RiskDashboard = () => {
   )
 }
 
-export const Route = createFileRoute('/dashboard')({
+export const Route = createFileRoute('/')({
   component: RiskDashboard,
 })
 

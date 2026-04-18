@@ -10,7 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MenuRouteImport } from './routes/menu'
-import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as OrganizationSettingsRouteImport } from './routes/organization/$settings'
 import { Route as AuthAuthViewRouteImport } from './routes/auth/$authView'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
@@ -20,9 +20,9 @@ const MenuRoute = MenuRouteImport.update({
   path: '/menu',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrganizationSettingsRoute = OrganizationSettingsRouteImport.update({
@@ -42,14 +42,14 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 } as any)
 
 export interface FileRoutesByFullPath {
-  '/dashboard': typeof DashboardRoute
+  '/': typeof IndexRoute
   '/menu': typeof MenuRoute
   '/auth/$authView': typeof AuthAuthViewRoute
   '/organization/$settings': typeof OrganizationSettingsRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
 }
 export interface FileRoutesByTo {
-  '/dashboard': typeof DashboardRoute
+  '/': typeof IndexRoute
   '/menu': typeof MenuRoute
   '/auth/$authView': typeof AuthAuthViewRoute
   '/organization/$settings': typeof OrganizationSettingsRoute
@@ -57,7 +57,7 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/dashboard': typeof DashboardRoute
+  '/': typeof IndexRoute
   '/menu': typeof MenuRoute
   '/auth/$authView': typeof AuthAuthViewRoute
   '/organization/$settings': typeof OrganizationSettingsRoute
@@ -66,21 +66,21 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/dashboard'
+    | '/'
     | '/menu'
     | '/auth/$authView'
     | '/organization/$settings'
     | '/api/auth/$'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/dashboard'
+    | '/'
     | '/menu'
     | '/auth/$authView'
     | '/organization/$settings'
     | '/api/auth/$'
   id:
     | '__root__'
-    | '/dashboard'
+    | '/'
     | '/menu'
     | '/auth/$authView'
     | '/organization/$settings'
@@ -88,7 +88,7 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  DashboardRoute: typeof DashboardRoute
+  IndexRoute: typeof IndexRoute
   MenuRoute: typeof MenuRoute
   AuthAuthViewRoute: typeof AuthAuthViewRoute
   OrganizationSettingsRoute: typeof OrganizationSettingsRoute
@@ -104,11 +104,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MenuRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboard': {
-      id: '/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof DashboardRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/organization/$settings': {
@@ -136,7 +136,7 @@ declare module '@tanstack/react-router' {
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  DashboardRoute: DashboardRoute,
+  IndexRoute: IndexRoute,
   MenuRoute: MenuRoute,
   AuthAuthViewRoute: AuthAuthViewRoute,
   OrganizationSettingsRoute: OrganizationSettingsRoute,
